@@ -1,2 +1,2 @@
-# codotype-vuejs-vuex-bootstrap-generator
-Codotype generator for Vue.js, Vue Router, Vuex, & Bootstrap 4
+# codotype-generator-nuxt
+Codotype generator for Nuxt.js, Vue.js, Vuex, & Bootstrap 4
