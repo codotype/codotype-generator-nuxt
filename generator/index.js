@@ -1,6 +1,6 @@
 const { Generator } = require('codotype-generator')
 
-module.exports = class VueJs extends Generator {
+module.exports = class NuxtJs extends Generator {
   async write () {
     await this.composeWith('./base')
     await this.composeWith('./navbar')

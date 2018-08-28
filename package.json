@@ -13,7 +13,7 @@
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/codotype/codotype-vuejs-vuex-generator/issues"
+    "url": "https://github.com/codotype/codotype-generator-nuxt/issues"
   },
   "homepage": "https://github.com/codotype/codotype-generator-nuxt#readme",
   "dependencies": {
