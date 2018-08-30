@@ -5,7 +5,6 @@ const app = require('codotype-generator/examples/library.json')
 
 // Each stage can accept its own app - this is done to simplify challenges introduc
 const build = {
-  output_directory: 'app_1231231231', // TODO - abstract this into a helper function - can also be provided by codotype-api
   app: app,
   stages: [{
     project_path: 'nuxt_app', // TODO - pull this from the generator
@@ -20,7 +19,7 @@ const build = {
 const runtime = new Codotype.runtime()
 
 // Executes the build
-runtime.execute(build)
+runtime.execute({ build })
 
 // // NOTE - in-progress generator metadata structure
 // // QUESTION - should this be encapsulated in package.json? ...probably not

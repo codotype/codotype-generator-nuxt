@@ -1,0 +1,16 @@
+{
+  "id": "codotype-generator-nuxt",
+  "name": "Nuxt.js",
+  "icon": "devicon-express-original",
+  "description": "Nuxt is a universal web framework built on top of Vue.js",
+  "tech_tags": ["Nuxt.js", "Express.js", "Node", "ES6", "MongoDB"],
+  "type_tags": ["Fullstack"],
+  "self_configuring": false,
+  "project_path": "nuxt_app",
+  "addons": [],
+  "global_options": [],
+  "model_options": [],
+  "github_url": "codotype/codotype-nodejs-express-mongodb-generator",
+  "version": "0.1.0",
+  "official": true
+}
