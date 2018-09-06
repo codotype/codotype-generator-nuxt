@@ -1,5 +1,5 @@
 // Generator index file
-const { Generator } = require('codotype-generator');
+const Generator = require('@codotype/generator');
 
 // // // //
 

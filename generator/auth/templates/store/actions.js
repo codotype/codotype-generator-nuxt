@@ -1,4 +1,4 @@
-import Router from '@/routers'
+// import Router from '@/routers'
 import { $GET, $POST } from '@/store/lib/helpers'
 import {
   LOGIN_ROUTE,
@@ -52,7 +52,7 @@ const actions = {
       commit('notification/add', REGISTER_SUCCESS_NOTIFICATION, { root: true })
 
       // Redirects to login route
-      Router.push('/auth/login')
+      // Router.push('/auth/login')
     })
     .catch((err) => {
       // Shows REGISTER_ERROR_NOTIFICATION message
@@ -90,7 +90,7 @@ const actions = {
       dispatch('fetchUserProfile')
 
       // Redirects to home route
-      Router.push('/')
+      // Router.push('/')
     })
     .catch((err) => {
       // Shows LOGIN_ERROR_NOTIFICATION message
@@ -105,7 +105,7 @@ const actions = {
   logout ({ commit }) {
     commit('clear_token')
     commit('clear_current_user')
-    Router.push('/auth/login')
+    // Router.push('/auth/login')
   }
 }
 
