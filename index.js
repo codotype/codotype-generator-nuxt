@@ -24,14 +24,6 @@ runtime.registerGenerator({ relative_path: './' })
 
 // Executes the build
 runtime.execute({ build })
-// console.log(build)
-
-// // NOTE - in-progress generator metadata structure
-// // QUESTION - should this be encapsulated in package.json? ...probably not
-// module.exports = {
-//   name: 'Vue.js + Vue Router + Vuex + Bootstrap Generator',
-//   keywords: [],
-//   generator: generator,
-//   destination_dir: 'vue_bootstrap',
-//   additional_options: []
-// }
+.then(() => {
+  console.log('TEST SUCCESSFUL')
+})

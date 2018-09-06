@@ -18,7 +18,7 @@
   "homepage": "https://github.com/codotype/codotype-generator-nuxt#readme",
   "dependencies": {
     "@codotype/generator": "^0.1.1",
-    "@codotype/runtime": "^0.2.1",
+    "@codotype/runtime": "^0.3.0",
     "@codotype/util": "^0.1.0"
   }
 }
