@@ -15,9 +15,25 @@ module.exports = {
     ]
   },
 
+  // proxy: [
+  //   // Proxies /foo to http://localhost:4000/foo
+  //   'http://localhost:4000/api',
+
+  //   // Proxies /api/books/*/**.json to http://example.com:8000
+  //   // 'http://example.com:8000/api/books/*/**.json',
+
+  //   // You can also pass more options
+  //   // [ 'http://localhost:4000/foo', { ws: false } ]
+  // ],
+
   modules: [
-    'bootstrap-vue/nuxt'
+    'bootstrap-vue/nuxt',
+    '@nuxtjs/proxy'
   ],
+
+  proxy: {
+    '/api': 'http://localhost:4000/'
+  },
 
   /*
   ** Customize the progress bar color
