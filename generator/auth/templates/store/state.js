@@ -1,7 +1,7 @@
 
 // Auth Module State
 export default {
-  token: localStorage.token || '',
+  token: '', // TODO - how to best handle JWT auth in Nuxt?
   fetching: false,
   logging_in: false,
   current_user: {},

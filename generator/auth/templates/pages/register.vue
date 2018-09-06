@@ -33,7 +33,6 @@
 <script>
 import Loading from '@/components/Loading'
 import FormInput from '@/components/FormInput'
-import FormSubmit from '@/components/FormSubmit'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -43,8 +42,7 @@ export default {
   },
   components: {
     Loading,
-    FormInput,
-    FormSubmit
+    FormInput
   },
   computed: mapGetters({
     fetching: 'auth/logging_in',

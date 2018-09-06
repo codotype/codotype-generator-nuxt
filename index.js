@@ -1,3 +1,4 @@
+// TODO - this file should be moved into a test directory
 const CodotypeRuntime = require('@codotype/runtime')
 
 // const app = require('codotype-generator/examples/todo-list.json')
@@ -13,13 +14,9 @@ const build = {
 }
 
 // Invoke runtime directly with parameters
-// TODO - this should be removed and replaced by a CLI command in packge.json
-// TODO - refactor this so these options are passed into the `execute` method of this instance
 const runtime = new CodotypeRuntime()
 
-// TODO - register generator needs to accept more options
-// Should accept path to generator class entry point,
-// either as a relative path, absolute path, or module name
+// Registers this generator via relative path
 runtime.registerGenerator({ relative_path: './' })
 
 // Executes the build
