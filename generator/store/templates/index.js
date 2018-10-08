@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 import auth from './auth'
 // import notification from '@/modules/notification/store'
-<%_ app.schemas.forEach((schema) => { _%>
+<%_ blueprint.schemas.forEach((schema) => { _%>
 import <%= schema.identifier %> from './<%= schema.identifier %>'
 <%_ }) _%>
 
@@ -15,7 +15,7 @@ export default function () {
     modules: {
       auth,
       // notification,
-      <%= app.schemas.map(s => s.identifier).join(',\n    ') %>
+      <%= blueprint.schemas.map(s => s.identifier).join(',\n    ') %>
     }
   })
 }

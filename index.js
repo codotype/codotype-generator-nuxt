@@ -1,15 +1,16 @@
 // TODO - this file should be moved into a test directory
 const CodotypeRuntime = require('@codotype/runtime')
 
-// const app = require('codotype-generator/examples/todo-list.json')
-const app = require('@codotype/generator/examples/library.json')
+const blueprint = require('@codotype/blueprints/lib/team-lists.json')
 
 // Each stage can accept its own app - this is done to simplify challenges introduc
+// TODO - pull `generator_id` from codotype-meta.json, potentially refactor this approach?
+// TODO - ensure presence of valid configuration object
 const build = {
-  app: app,
+  blueprint: blueprint,
   stages: [{
-    generator_id: 'codotype-generator-nuxt', // TODO - pull this from codotype-meta.json, potentially refactor this approach?
-    configuration: {} // TODO - this will be populated by the UI
+    generator_id: 'codotype-generator-nuxt',
+    configuration: {}
   }]
 }
 

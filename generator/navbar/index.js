@@ -4,7 +4,7 @@ const Generator = require('@codotype/generator')
 // // // //
 
 module.exports = class VueJsNavbar extends Generator {
-  async write ({ app }) {
+  async write ({ blueprint }) {
 
     let headerLinks = []
 
@@ -13,7 +13,7 @@ module.exports = class VueJsNavbar extends Generator {
     }
 
     // Generates the header links for each model/schema
-    _.each(app.schemas, (s) => { buildHeaderLink(s) })
+    _.each(blueprint.schemas, (s) => { buildHeaderLink(s) })
 
     await this.copyTemplate(
       this.templatePath('Navbar.vue'),

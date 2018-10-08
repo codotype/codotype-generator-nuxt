@@ -5,10 +5,10 @@ const Generator = require('@codotype/generator');
 
 module.exports = class ModulePages extends Generator {
 
-  async write({ app }) {
+  async write({ blueprint }) {
 
-    // Iterates over each schema in the this.options.build.app.schemas array
-    app.schemas.forEach(async (schema) => {
+    // Iterates over each schema in the this.options.build.blueprint.schemas array
+    blueprint.schemas.forEach(async (schema) => {
 
       // Defines destination directory for files in this loop
       const moduleRoot =  'pages/' + schema.identifier_plural + '/'
@@ -51,4 +51,3 @@ module.exports = class ModulePages extends Generator {
   }
 
 };
-
