@@ -1,4 +1,8 @@
-import { COLLECTION_GETTERS, MODEL_GETTERS } from '@/store/lib/mixins'
+import {
+  COLLECTION_GETTERS,
+  PAGINATION_GETTERS,
+  MODEL_GETTERS
+} from '../lib/mixins'
 
 // <%= schema.label %> Module Getters
 const getters = {
@@ -14,6 +18,7 @@ const getters = {
   <%_ } _%>
   <%_ })_%>
   ...COLLECTION_GETTERS,
+  ...PAGINATION_GETTERS,
   ...MODEL_GETTERS,
   newModel: state => {
     return state.newModel

@@ -1,4 +1,8 @@
-import { COLLECTION_STATE, MODEL_STATE } from '@/store/lib/mixins'
+import {
+  COLLECTION_STATE,
+  PAGINATION_STATE,
+  MODEL_STATE
+} from '@/store/lib/mixins'
 
 // <%= schema.label %> Module State
 export default {
@@ -10,6 +14,7 @@ export default {
   <%_ } _%>
   <%_ })_%>
   ...COLLECTION_STATE,
+  ...PAGINATION_STATE,
   ...MODEL_STATE,
   newModel: {},
   editModel: {}

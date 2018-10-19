@@ -1,6 +1,7 @@
 // import router from '@/routers'
 import axios from 'axios'
 import { $POST, $PUT, $DEL } from '@/store/lib/helpers'
+import { PAGINATION_ACTIONS, FILTER_ACTIONS } from '@/store/lib/mixins'
 
 const API_ROOT = '/api/<%= schema.identifier_plural %>'
 
@@ -8,7 +9,7 @@ const API_ROOT = '/api/<%= schema.identifier_plural %>'
 
 export default {
   <%_ schema.relations.forEach((rel) => { _%>
-  <%_ if (rel.type === 'OWNS_MANY') { _%>
+  <%_ if (rel.type === 'BELONGS_TO_REF') { _%>
   // OWNS MANY
   // GET /api/<%= schema.identifier_plural %>/:id/<%= rel.alias.identifier_plural %>
   <%= 'fetch' + rel.alias.class_name_plural %> ({ state, commit, dispatch }, <%= schema.identifier %>Id) {
@@ -55,19 +56,56 @@ export default {
   <%_ }) _%>
 
   // GET /api/<%= schema.identifier_plural %>
-  fetchCollection ({ state, commit, dispatch }) {
+  // fetchCollection ({ state, commit, dispatch }) {
+  //   commit('fetching', true)
+  //   axios.get(API_ROOT)
+  //   .then(({ data }) => {
+  //     commit('collection', data.items)
+  //     // TODO - integrate pagination
+  //     commit('fetching', false)
+  //   })
+  //   .catch((err) => {
+  //     commit('fetching', false)
+  //     commit('notification/add', { message: 'Fetch error', context: 'danger', dismissible: true }, { root: true })
+  //     throw err // TODO - better error handling
+  //   })
+  // },
+  // ...FILTER_ACTIONS('company'),
+  ...PAGINATION_ACTIONS,
+  // GET /api/<%= schema.identifier_plural %>
+  fetchCollection ({ state, commit, dispatch, rootGetters }) {
     commit('fetching', true)
-    axios.get(API_ROOT)
+    let apiRoot
+    if (state.filter) {
+      apiRoot = API_ROOT + '/search'
+    } else {
+      apiRoot = API_ROOT
+    }
+    return axios.get(apiRoot, {
+      headers: {
+        authorization: rootGetters['auth/token']
+      },
+      params: {
+        search: state.filter,
+        page: state.currentPage,
+        per_page: state.pageSize
+      }
+    })
     .then(({ data }) => {
-      commit('collection', data)
+      console.log(data)
+      commit('collection', data.items)
+      commit('pageSize', data.per_page)
+      commit('currentPage', data.page)
+      commit('count', data.count)
       commit('fetching', false)
     })
     .catch((err) => {
       commit('fetching', false)
-      commit('notification/add', { message: 'Fetch error', context: 'danger', dismissible: true }, { root: true })
+      // commit('notification/add', { message: 'Fetch error', context: 'danger', dismissible: true }, { root: true })
       throw err // TODO - better error handling
     })
   },
+
   // GET /api/<%= schema.identifier_plural %>/:id
   fetchModel ({ state, commit, dispatch }, <%= schema.identifier %>Id) {
     commit('fetching', true)
