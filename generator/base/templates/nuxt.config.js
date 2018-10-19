@@ -31,9 +31,9 @@ module.exports = {
     '@nuxtjs/proxy'
   ],
 
-  proxy: {
-    '/api': 'http://localhost:4000/'
-  },
+  // proxy: {
+  //   '/api': 'http://localhost:4000/'
+  // },
 
   /*
   ** Customize the progress bar color
