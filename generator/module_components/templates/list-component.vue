@@ -29,9 +29,9 @@
       <%_ schema.attributes.forEach((attr, index) => { _%>
         <%_ if (attr.unique) { _%>
         <td>
-          <a :href=" '#/<%= schema.identifier_plural %>/' + m._id ">
+          <nuxt-link :to="'/<%= schema.identifier_plural %>/' + m._id ">
             {{ m.<%=attr.identifier%> }}
-          </a>
+          </nuxt-link>
         </td>
         <%_ } else if (attr.datatype === 'BOOL') { _%>
         <td>
@@ -59,13 +59,13 @@
       <%_ }) _%>
         <!-- Edit <%= schema.label %>-->
         <td class='text-right'>
-          <a class="btn btn-sm btn-outline-primary" :href=" '#/<%= schema.identifier_plural %>/' + m._id">
+          <nuxt-link class="btn btn-sm btn-outline-primary" :to="'/<%= schema.identifier_plural %>/' + m._id">
             <i class="fa fa-fw fa-eye"></i>
-          </a>
+          </nuxt-link>
 
-          <a class="btn btn-sm btn-outline-warning" :href=" '#/<%= schema.identifier_plural %>/' + m._id + '/edit' ">
+          <nuxt-link class="btn btn-sm btn-outline-warning" :to="'/<%= schema.identifier_plural %>/' + m._id + '/edit' ">
             <i class="fa fa-fw fa-pencil"></i>
-          </a>
+          </nuxt-link>
 
           <button class="btn btn-sm btn-outline-danger" v-b-modal="'modal_' + m._id">
             <i class="fa fa-fw fa-trash"></i>

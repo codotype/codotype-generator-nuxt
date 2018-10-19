@@ -121,106 +121,38 @@ export const FILTER_ACTIONS = {
 // Pagination Mixins
 
 export const PAGINATION_STATE = {
-  start: 0,
-  pageSize: 3,
-  currentPage: 1,
-  paginatedCollection: []
+  count: 0,
+  pageSize: 5,
+  currentPage: 0
 }
 
 export const PAGINATION_ACTIONS = {
-  paginatedCollection ({ state, commit }) {
-    let collection = state.filteredCollection || state.collection
-
-    function paginate () {
-      return _.chain(collection)
-      .drop(state.start)
-      .take(state.pageSize)
-      .value()
-    }
-
-    let paginatedCollection = paginate()
-
-    if (paginatedCollection.length === 0 && state.currentPage > 1) {
-      commit('currentPage', 1)
-      commit('paginatedCollection', paginate())
-    } else {
-      commit('paginatedCollection', paginatedCollection)
-    }
-  },
-  pageSize ({ dispatch, commit }, newSize) {
-    commit('pageSize', newSize)
-    dispatch('paginatedCollection')
-  },
-  goToPage ({ dispatch, commit }, page) {
+  goToPage({ dispatch, commit }, page) {
     commit('currentPage', page)
-    dispatch('paginatedCollection')
-  },
-  prevPage ({ dispatch, state, commit }) {
-    commit('currentPage', state.currentPage - 1)
-    dispatch('paginatedCollection')
-  },
-  nextPage ({ dispatch, state, commit }) {
-    commit('currentPage', state.currentPage + 1)
-    dispatch('paginatedCollection')
-  },
-  firstPage ({ dispatch, commit }) {
-    commit('currentPage', 1)
-    dispatch('paginatedCollection')
-  },
-  lastPage ({ dispatch, state, commit }) {
-    let collection = state.filteredCollection || state.collection
-    commit('currentPage', Math.ceil(collection.length / state.pageSize))
-    dispatch('paginatedCollection')
+    dispatch('fetchCollection')
   }
 }
 
 export const PAGINATION_MUTATIONS = {
-  currentPage (state, page) {
+  currentPage(state, page) {
     state.currentPage = page
-    state.start = (page - 1) * state.pageSize
   },
-  pageSize (state, newSize) {
+  pageSize(state, newSize) {
     state.pageSize = newSize
-    state.start = (state.currentPage - 1) * state.pageSize
   },
-  start (state, start) {
-    state.start = start
-  },
-  paginatedCollection (state, paginatedCollection) {
-    state.paginatedCollection = paginatedCollection
+  count(state, count) {
+    state.count = count
   }
 }
 
 export const PAGINATION_GETTERS = {
-  pages: state => {
-    let collection = state.filteredCollection || state.collection
-    let total = Math.ceil(collection.length / state.pageSize)
-    let current = Math.ceil(state.start / state.pageSize) + 1
-    let pages = _.times(total, index => {
-      return {
-        current: index + 1 === current,
-        page: index + 1
-      }
-    })
-
-    return pages
-  },
   currentPage: state => {
     return state.currentPage
   },
-  totalPages: state => {
-    let collection = state.filteredCollection || state.collection
-    return Math.ceil(collection.length / state.pageSize)
+  pageSize: state => {
+    return state.pageSize
   },
-  prevPage: state => {
-    return state.currentPage - 1 > 0 ? state.currentPage - 1 : false
-  },
-  nextPage: state => {
-    let collection = state.filteredCollection || state.collection
-    let total = Math.ceil(collection.length / state.pageSize)
-    return state.currentPage < total ? state.currentPage + 1 : false
-  },
-  paginatedCollection: state => {
-    return state.paginatedCollection
+  count: state => {
+    return state.count - state.pageSize
   }
 }

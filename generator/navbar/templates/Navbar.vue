@@ -1,7 +1,7 @@
 <template>
   <b-navbar toggleable="md" type="dark" variant="dark">
     <b-navbar-brand to="/">
-      <%= app.label %>
+      <%= blueprint.label %>
     </b-navbar-brand>
 
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
@@ -31,8 +31,13 @@
       <!-- Register / Login -->
       <!-- <b-navbar-nav v-else> -->
       <b-navbar-nav>
-        <nuxt-link to="/auth/register">Register</nuxt-link>
-        <nuxt-link to="/auth/login">Login</nuxt-link>
+        <li class="nav-item">
+          <nuxt-link class="nav-link" to="/auth/register">Register</nuxt-link>
+        </li>
+
+        <li class="nav-item">
+          <nuxt-link class="nav-link" to="/auth/login">Login</nuxt-link>
+        </li>
       </b-navbar-nav>
 
     </b-collapse>
@@ -42,17 +47,17 @@
 <!-- // // // //  -->
 
 <script>
-// import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'Navbar'
-  // computed: mapGetters({
-  //   isAuthenticated: 'auth/is_authenticated',
-  //   currentUser: 'auth/current_user'
-  // }),
-  // methods: mapActions({
-  //   logout: 'auth/logout'
-  // })
+  name: 'Navbar',
+  computed: mapGetters({
+    isAuthenticated: 'auth/is_authenticated',
+    currentUser: 'auth/current_user'
+  }),
+  methods: mapActions({
+    logout: 'auth/logout'
+  })
 }
 </script>
 

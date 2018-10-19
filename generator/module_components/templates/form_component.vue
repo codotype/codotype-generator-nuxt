@@ -32,7 +32,9 @@
       <div class="form-group">
         <label class='mb-0'>
           <%= rel.alias.label %>
-          <% if (rel.required) { %><span class='text-danger'>*</span><% } %>
+          <%_ if (rel.required) { _%>
+          <span class='text-danger'>*</span>
+          <%_ } _%>
         </label>
         <%_ if (rel.type === 'BELONGS_TO') { _%>
         <select type="text" class="form-control" placeholder="<%= rel.alias.label %>" v-model="model.<%=rel.alias.identifier%>_id">
@@ -42,7 +44,7 @@
         </select>
       <%_ } else if (rel.type === 'HAS_MANY') { _%>
         <select type="text" multiple class="form-control" placeholder="<%= rel.alias.label %>" v-model="model.<%=rel.alias.identifier%>_ids" :key="<%= rel.alias.identifier %>">
-          <option :value="<%=rel.schema.identifier%>._id" v-for="<%=rel.schema.identifier%> in <%= rel.schema.identifier_plural %>">{{ <%= rel.schema.identifier %>.<%= rel.related_lead_attribute %> }}</option>
+          <option :value="<%=rel.schema.identifier%>._id" v-for="<%=rel.schema.identifier%> in <%= rel.schema.identifier_plural %>" :key="<%= rel.schema.identifier %>._id">{{ <%= rel.schema.identifier %>.<%= rel.related_lead_attribute %> }}</option>
         </select>
       <%_ } _%>
       </div>
@@ -59,13 +61,19 @@
 export default {
   name: '<%= schema.identifier %>_form',
   props: ['model'],
-  created () {
+  asyncData ({ store }) {
+    <%_ let createdActions = [] _%>
     <%_ schema.relations.forEach((rel) => { _%>
-    this.$store.dispatch('<%= rel.schema.identifier %>/fetchCollection')
+    <%_ if (createdActions.includes(rel.schema.identifier)) { return } _%>
+    <%_ createdActions.push(rel.schema.identifier) _%>
+    store.dispatch('<%= rel.schema.identifier %>/fetchCollection')
     <%_ }) _%>
   },
   computed: {
+    <%_ let computedKeys = [] _%>
     <%_ schema.relations.forEach((rel) => { _%>
+    <%_ if (computedKeys.includes(rel.schema.identifier)) { return } _%>
+    <%_ computedKeys.push(rel.schema.identifier) _%>
     <%= rel.schema.identifier_plural %> () {
       return this.$store.getters['<%= rel.schema.identifier %>/collection']
     },
