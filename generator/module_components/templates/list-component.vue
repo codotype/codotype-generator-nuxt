@@ -50,10 +50,13 @@
       <%_ }) _%>
       <%_ schema.relations.forEach((rel) => { _%>
       <%_ if (rel.type === 'BELONGS_TO') { _%>
-        <td>
+        <td v-if="m.<%= rel.alias.identifier + '_id' %>">
           <router-link :to="'/<%= rel.schema.identifier_plural %>/' + m.<%= rel.alias.identifier + '_id' %>">
             {{m.<%= rel.alias.identifier %>.<%= rel.related_lead_attribute %>}}
           </router-link>
+        </td>
+        <td v-else>
+          N/A
         </td>
       <%_ } _%>
       <%_ }) _%>
