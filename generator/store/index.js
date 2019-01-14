@@ -1,16 +1,12 @@
-const _ = require('lodash')
-const Generator = require('@codotype/generator')
 
-// // // //
-
-module.exports = class AppStore extends Generator {
-
+module.exports = {
+  name: 'NuxtVuexStore',
   async write({ blueprint }) {
 
     // nuxt/store/index.js
     // TODO - move into separate generator class definition
     let storeModules = []
-    _.each(blueprint.schemas, (s) => {
+    blueprint.schemas.forEach((s) => {
       storeModules.push(s.identifier)
     })
 

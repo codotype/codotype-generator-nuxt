@@ -1,8 +1,6 @@
-const Generator = require('@codotype/generator')
 
-// // // //
-
-module.exports = class Auth extends Generator {
+module.exports = {
+  name: 'NuxtAuth',
   async write () {
 
     // Copies auth store

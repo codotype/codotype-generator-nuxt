@@ -1,6 +1,5 @@
-const Generator = require('@codotype/generator')
-
-module.exports = class NuxtJs extends Generator {
+module.exports = {
+  name: 'NuxtGenerator',
   async write () {
     await this.composeWith('./base')
     await this.composeWith('./api_base')
