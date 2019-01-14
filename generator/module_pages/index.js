@@ -1,12 +1,9 @@
-// Generator index file
-const Generator = require('@codotype/generator');
 
-// // // //
-
-module.exports = class ModulePages extends Generator {
-
+module.exports = {
+  name: 'ModulePages',
   async write({ blueprint }) {
 
+    // TODO - replace with forEachSchema call
     // Iterates over each schema in the this.options.build.blueprint.schemas array
     blueprint.schemas.forEach(async (schema) => {
 

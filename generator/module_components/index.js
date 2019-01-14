@@ -1,13 +1,9 @@
-// Generator index file
-const Generator = require('@codotype/generator');
-var _ = require('lodash');
 
-// // // //
-
-module.exports = class ModuleComponents extends Generator {
-
+module.exports = {
+  name: 'ModuleComponents',
   async write({ blueprint }) {
 
+    // TODO - replace with call to forEachSchema
     // Iterates over each schema in the blueprint.schemas array
     blueprint.schemas.forEach(async (schema) => {
 

@@ -1,17 +1,14 @@
-const _ = require('lodash')
-const Generator = require('@codotype/generator');
 
-// // // //
-
-module.exports = class ModuleStore extends Generator {
-
+module.exports = {
+  name: 'VuexModuleStore',
   async write({ blueprint }) {
 
     // Iterates over each schema in the this.options.build.blueprint.schemas array
     blueprint.schemas.forEach(async (schema) => {
 
+      // TODO - use abstracted NEW_MODEL code from @codotype/util
       let newModel = {}
-      _.each(schema.attributes, (attr) => {
+      schema.attributes.forEach((attr) => {
         if (attr.datatype === 'RELATION' && attr.datatypeOptions.relationType === 'HAS_MANY') {
           newModel[attr.identifier] = []
         } else if (attr.datatype === 'NUMBER') {

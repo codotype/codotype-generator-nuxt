@@ -18,7 +18,7 @@
     <div class="row">
       <div class="col-lg-12">
         <ListView :collection="collection" />
-        <b-pagination :total-rows="totalRows" :value="currentPage" :per-page="perPage" @change="goToPage" />
+        <!-- <b-pagination :total-rows="totalRows" :value="currentPage" :per-page="perPage" @change="goToPage" /> -->
         <!-- <b-pagination :total-rows="100" :value="1" :per-page="20" @change="goTo" /> -->
       </div>
     </div>
@@ -29,6 +29,7 @@
 <!-- // // // //  -->
 
 <script>
+import axios from '~/plugins/axios'
 import ListView from '../../components/<%= schema.identifier %>/<%= schema.class_name %>ListWidget'
 import { mapGetters, mapActions } from 'vuex'
 
@@ -37,14 +38,17 @@ export default {
   components: {
     ListView
   },
-  asyncData ({ store }) {
-    store.dispatch('<%= schema.identifier %>/fetchCollection')
+  async asyncData ({ store }) {
+    // return store.dispatch('<%= schema.identifier %>/fetchCollection')
+    const { data } = await axios.get('/api/<%= schema.identifier_plural %>')
+    return { collection: data.items }
+
   },
   head () {
     return { title: '<%= schema.label_plural %>' }
   },
   computed: mapGetters({
-    collection: '<%= schema.identifier %>/collection',
+    // collection: '<%= schema.identifier %>/collection',
     totalRows: '<%= schema.identifier %>/count',
     perPage: '<%= schema.identifier %>/pageSize',
     currentPage: '<%= schema.identifier %>/currentPage'

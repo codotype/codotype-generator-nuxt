@@ -1,8 +1,6 @@
-const Generator = require('@codotype/generator')
 
-// // // //
-
-module.exports = class ExpressJsBase extends Generator {
+module.exports = {
+  name: 'NuxtGeneratorApiBase',
   async write () {
 
     // Copies server base code
@@ -11,6 +9,7 @@ module.exports = class ExpressJsBase extends Generator {
       this.destinationPath('server')
     )
 
+    // TOOD - replace with compile in place
     await this.copyTemplate(
       this.templatePath('routes.js'),
       this.destinationPath('server/routes.js')

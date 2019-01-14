@@ -1,9 +1,6 @@
-const Generator = require('@codotype/generator')
 
-// // // //
-
-module.exports = class ExpressJsResources extends Generator {
-
+module.exports = {
+  name: 'NuxtGeneratorApiResource',
   async forEachSchema({ blueprint, configuration, schema }) {
 
     // Pulls `generate_api_doc` from configuration.options
